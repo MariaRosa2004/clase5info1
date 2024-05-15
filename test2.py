@@ -19,7 +19,9 @@ with open('medicos.csv', 'r',encoding='utf8') as file:
 # Leer resultados desde TXT
 with open('resultados.txt', 'r',encoding='utf8') as file:
     resultados = [line.strip() for line in file]
-    
+
+
+
             
     
 
@@ -98,21 +100,28 @@ def eliminar_examen(cedula):
         pacientes.remove(paciente)
 
 # Función para añadir un nuevo paciente
-def añadir_paciente(nuevo_paciente):
-    if buscar_paciente(nuevo_paciente['cedula']):
-        print('Error: La cedula ya existe')
-    else:
-        pacientes.append(nuevo_paciente)
-def añadir_paciente(nuevo_paciente):
-    if buscar_paciente(nuevo_paciente['cedula']):
-        print('Error: La cedula ya existe')
-    else:
-        pacientes.append(nuevo_paciente)
-def añadir_paciente(nuevo_paciente):
-    if buscar_paciente(nuevo_paciente['cedula']):
-        print('Error: La cedula ya existe')
-    else:
-        pacientes.append(nuevo_paciente)
+def añadir_paciente(nuevop):
+    if not cedula==nuevop:
+       nom=input('Ingresa el nombre del nuevo paciente')
+       ced=input('Ingresa la nueva cedula del nuevo paciente')
+       while True:
+           try:
+               edad=int(input('Ingresa la edad del nuevo paciente '))
+               break
+           except ValueError:
+               print('Ingresa los datos nuevamente')
+        while True:
+           try:
+               med=int(input('Ingresa el numero nuevamente '))
+               break
+           except ValueError:
+               print('Ingresa los datos nuevamente')
+        dic={}
+        dic['nombre']=nom
+        dic['cedula']=ced
+        dic['edad']=ed
+        dic['medico_asignado']=med 
+
 
 # Función para exportar los datos a archivos
 def exportar_datos():
@@ -168,6 +177,7 @@ Ajustar:
 3.Actualizar
 4.Salir
 >''')
+                            #pacientes
                             if d=='1':
                                 nuevo_paciente =(input("Ingrese los datos del nuevo paciente en formato JSON:"))
                                 añadir_paciente(nuevo_paciente)
@@ -192,18 +202,19 @@ Ajustar:
 3.Actualizar
 4.Salir
 >''')
+                            #Examenes
                             if e=='1':
                                 nuevpo =(input("Ingrese los datos del nuevo paciente en formato JSON:"))
-                                añadir_paciente(nuevpo)
+                                añadir_examen(nuevpo)
                                 print('La informacion se ha guardado correctamente')
                             elif e=='2':
                                 cedula = input("Ingrese la cédula del medico: ")
-                                eliminar_paciente(cedula)
+                                eliminar_examenes(cedula)
                                 print('La informacion se ha guardado correctamente')
                             elif e=='3':
                                 cedula = input("Ingrese la cédula del paciente: ")
-                                datos_actualizados = json.loads(input("Ingrese los datos actualizados del paciente en formato JSON: "))
-                                actualizar_paciente(cedula, datos_actualizados)
+                                datos_actualizados = json.loads(input("Ingrese los datos actualizados : "))
+                                actualizar_examen(cedula, datos_actualizados)
                             elif e=='4':
                                 break
                             else:
@@ -216,18 +227,19 @@ Ajustar:
 3.Actualizar
 4.Salir
 >''')
+                            #Medicos
                             if f=='1':
-                                nuevpo =(input("Ingrese los datos del nuevo paciente en formato JSON:"))
-                                añadir_paciente(nuevpo)
+                                nuevom =(input("Ingrese los datos del Medico: "))
+                                añadir_medicio(nuevom)
                                 print('La informacion se ha guardado correctamente')
                             elif f=='2':
-                                cedula = input("Ingrese la cédula del paciente: ")
-                                eliminar_paciente(cedula)
+                                cedula = input("Ingrese la cédula del medico: ")
+                                eliminar_medico(cedula)
                                 print('La informacion se ha guardado correctamente')
                             elif f=='3':
                                 cedula = input("Ingrese la cédula del paciente: ")
-                                datos_actualizados = json.loads(input("Ingrese los datos actualizados del paciente en formato JSON: "))
-                                actualizar_paciente(cedula, datos_actualizados)
+                                datos_actualizados = csv.reader(input("Ingrese los datos actualizados del medico: "))
+                                actualizar_medico(cedula, datos_actualizados)
                             elif f=='4':
                                 break
                             else:
@@ -246,4 +258,4 @@ Ajustar:
         print('El numero que ingresaste es incorrecto intente nuevamente')
 
 
-#falata que los caracteres se lean bien, que no pida los datos tipo json, no se que hace lo de nuevo paciente, falta las validaciones, cuando el archivo datos se crea que lo muestre bonito, falta hacer lo del codigo del doctor y eso.
+ falta las validaciones, cuando el archivo datos se crea que lo muestre bonito, falta hacer lo del codigo del doctor y eso.
